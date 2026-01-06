@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Let browser know website is optimized for mobile-->
+
+    <title>Tirailleur-senegalais</title>
+
+    <!--<link rel='stylesheet' href='/css/style_complet.css'>-->
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="/css/timeline.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src='index.js' defer></script>
+
+    <!-- import de materializecss / google icon et materialize JS/ -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+
+<body>
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">Chronologie et histoire des Tirailleurs</a>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent scrollable">
+                <li class="tab"><a class="active" href="index.html">Page d'acceuil</a></li>
+                <li class="tab"><a href="page1.html">Les 2 guerres</a></li>
+                <li class="tab"><a href="page2.html">La vie des soldats</a></li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="frise-container">
+        <h1> Qui était les tirailleurs senegalais et leur histoire :</h1>
+        <p>Les tirailleurs sénégalais étaient des militaires appartenant aux troupes coloniales, qui ont été créés par l'Empire colonial français en 1857 et ont été dissous au début des années 1960.
+        En dépit de leur nom, beaucoup n'étaient ni soldats ni Sénégalais, mais ont lutté pour le drapeau français pendant les deux guerres mondiales (1914-1918 & 1939-1945), principalement en première ligne de front.
+        </p>
+        <h2> Chronologie historique : </h2>
+        <p>Découvrez les moments clés de l'histoire des tirailleurs à travers plus d'un siècles de service militaire</p>
+        <div class="timeline2">
+            <ul>
+                <li>
+                    <div>
+                        <img src="https://readdy.ai/api/search-image?query=Historical%20illustration%20of%20early%20colonial%20military%20formation%20ceremony%20in%20Senegal%201857%20French%20colonial%20officers%20training%20local%20recruits%20vintage%20sepia%20tones%20military%20parade%20formal%20uniforms%20historical%20document%20style&width=300&height=200&seq=timeline-1857&orientation=landscape"
+                            class="timeline-img">
+                        <strong>Création des Tirailleurs</strong>
+                        Création des premiers régiments de tirailleurs sénégalais par le général Faidherbe.
+                    </div>
+                    <span class="time">
+                        <span>1857</span>
+                    </span>
+                </li>
+                <li>
+                    <div>
+                        <img src="https://readdy.ai/api/search-image?query=Black%20and%20white%20photograph%20of%20colonial%20soldiers%20mobilization%201914%20tirailleurs%20boarding%20ships%20for%20France%20military%20uniforms%20departure%20ceremony%20vintage%20sepia%20documentary%20style%20historical%20moment&width=300&height=200&seq=timeline-1914&orientation=landscape"
+                            class="timeline-img">
+                        <strong>Première Guerre Mondiale - Mobilisation</strong>
+                        Plus de 200 000 tirailleurs sont envoyés sur le front européen dès le début du conflit. Ils
+                        combattent dans les Vosges, la Champagne et participent aux batailles les plus meurtrières.
+                    </div>
+                    <span class="time">
+                        <span>1914</span>
+                    </span>
+                </li>
+                <li>
+                    <div>
+                        <img src="https://readdy.ai/api/search-image?query=Dramatic%20black%20and%20white%20photograph%20of%20tirailleur%20soldiers%20in%20Verdun%20battlefield%201916%20trenches%20military%20helmets%20rifles%20muddy%20conditions%20war%20photography%20historical%20documentation%20sepia%20tones&width=300&height=200&seq=timeline-1916&orientation=landscape"
+                            class="timeline-img">
+                        <strong>Bataille de Verdun</strong>
+                        Les tirailleurs participent héroïquement à la défense de Verdun, l'une des batailles les plus
+                        sanglantes de l'Histoire. Leur bravoure est reconnue par de nombreuses décorations.
+                    </div>
+                    <span class="time">
+                        <span>1916</span>
+                    </span>
+                </li>
+                <li>
+                    <div>
+                        <img src="https://readdy.ai/api/search-image?query=Historical%20photograph%20of%20tirailleur%20soldiers%20celebrating%20armistice%201918%20military%20uniforms%20victory%20celebration%20flags%20crowd%20black%20and%20white%20vintage%20documentary%20style%20joy%20and%20relief&width=300&height=200&seq=timeline-1918&orientation=landscape"
+                            class="timeline-img">
+                        <strong>L'Offensive Finale</strong>
+                        Les tirailleurs participent aux offensives victorieuses qui mènent à l'Armistice. Leur
+                        contribution
+                        à la victoire française est inestimable, malgré les pertes considérables.
+                    </div>
+                    <span class="time">
+                        <span>1918</span>
+                    </span>
+                </li>
+                <li>
+                    <div>
+                        <img src="https://readdy.ai/api/search-image?query=World%20War%202%20colonial%20soldiers%20mobilization%201940%20tirailleurs%20in%20modern%20military%20uniforms%20preparation%20for%20battle%20black%20and%20white%20photograph%20vintage%20sepia%20military%20formation&width=300&height=200&seq=timeline-1940&orientation=landscape"
+                            class="timeline-img">
+                        <strong>Seconde Guerre Mondiale - La Défense</strong>
+                        Face à l'invasion allemande, les tirailleurs se battent courageusement. Beaucoup sont faits
+                        prisonniers et certains sont victimes de massacres par l'armée allemande.
+                    </div>
+                    <span class="time">
+                        <span>1940</span>
+                    </span>
+                </li>
+                <li>
+                    <div>
+                        <img src="https://readdy.ai/api/search-image?query=Liberation%20of%20France%201944%20tirailleur%20soldiers%20marching%20through%20freed%20French%20towns%20celebrating%20crowds%20military%20uniforms%20black%20and%20white%20documentary%20photography%20victory%20parade&width=300&height=200&seq=timeline-1944&orientation=landscape"
+                            class="timeline-img">
+                        <strong>La Libération de la France</strong>
+                        Les tirailleurs participent au débarquement de Provence et à la libération de Paris. L'Armée
+                        d'Afrique, comprenant de nombreux tirailleurs, joue un rôle majeur dans la victoire.
+                    </div>
+                    <span class="time">
+                        <span>1944</span>
+                    </span>
+                </li>
+                <li>
+                    <div>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzMRerERCfUOCaHPlJP9CChi_vvOe03iAlRA&s"
+                            class="timeline-img">
+                        Dissolution des dernières unités de tirailleurs sénégalais
+                    </div>
+                    <span class="time">
+                        <span>1960/64</span>
+                    </span>
+                </li>
+                <li>
+                    <div>
+                        <img src="https://journals.openedition.org/bagf/docannexe/image/6883/img-2.jpg"
+                            class="timeline-img">
+                        <strong>Reconnaissance et Mémoire</strong>
+                        La France reconnait officiellement la contribution des tirailleurs et verse une pension
+                        identique
+                        aux anciens combattants, quelle que soit leur nationalité. Leur sacrifice n'est pas oublié.
+                    </div>
+                    <span class="time">
+                        <span>2010</span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>

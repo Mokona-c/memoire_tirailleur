@@ -1,0 +1,81 @@
+#map {
+    width: 95%;
+    height: 95%;
+}
+
+#controls {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    z-index: 1;
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+#controls button {
+    background-color: #456990; /* Même bleu que votre frise */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+#controls button:hover {
+    background-color: #1B3252; /* Un bleu plus foncé */
+    transform: scale(1.05);    /* S'agrandit légèrement */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+#controls button:active {
+    transform: scale(0.98);
+}
+
+#controls button:disabled {
+    background-color: #ccc;
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+
+
+/* Le conteneur principal de la bulle */
+.maplibregl-popup-content {
+    background: #fcf5ed !important; 
+    color: #1B3252;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 15px;
+    max-width: 250px;
+}
+
+.maplibregl-popup-content strong {
+    display: block;
+    color: #1B3252; /* Ton bleu */
+    font-size: 20px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #456990;
+    padding-bottom: 4px;
+}
+
+/* La petite flèche sous la bulle */
+.maplibregl-popup-tip {
+    border-top-color: #F0ECD1 !important;
+}
+
+/* Le bouton de fermeture (le 'x') */
+.maplibregl-popup-close-button {
+    font-size: 16px;
+    color: #456990;
+    padding: 5px;
+}
