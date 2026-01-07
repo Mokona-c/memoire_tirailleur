@@ -3,7 +3,7 @@ const POINTS_DECES_URL = 'assets/points_deces_vrai_vrai.geojson';
 const AFRIQUE_GEOJSON_URL = 'assets/afrique.geojson';
 const CONCENTRATION_DECES_URL = 'assets/concentration_deces_departement_wgs84.geojson';
 const CONTOUR_FRANCE_URL = 'assets/contours_france.geojson';
-let cemeteries = { type: "FeatureCollection", features: [] };
+
 
 // Valeurs spéciales : pour les catégories année, mois, pays
 const ANNEE_INCONNUE_VALEUR = 9999;
@@ -645,59 +645,74 @@ function toggleEthnies() {
 }
 //////FONCTION POUR CARTE ETHNIE MAXENCE//////:
 ////// FONCTION POUR CARTE MISAKI-ANGE//////
+
 function toggleNecropoles() {
+    // --- 1. CONFIGURATION DES COUCHES MAPBOX ---
+    const couchesDeces = ['clusters', 'cluster-count', 'unclustered-point'];
+    const couchesNecro = ['necropole-circle'];
+
+    // --- 2. SÉLECTION DES ÉLÉMENTS HTML ---
     
-    const decesLayers = ['clusters','cluster-count','unclustered-point'];
-    const necroLayers = ['necropole-circle'];
-    // seulement si layer pas element const isShowingDeces = map.getLayoutProperty(decesLayers[0], 'visibility') !== 'none';
+    // Groupe "TEMPOREL" (Mode Décès)
+    // ID : legend | Class : .echelle
+    const temporelId = document.getElementById('legend');
+    const temporelClass = document.querySelectorAll('.echelle');
 
-    const elementsTemporels = document.querySelectorAll('.echelle-barre, .echelle-container');
-    const idsElementsNecro = ['graph_perso'];
-    const btn = document.getElementById('btn-toggle-layers');
-    
+    // Groupe "NÉCROPOLES" (Mode Nécropoles)
+    // ID : graph_perso | Class : .categorie
+    const necroId = document.getElementById('graph_perso');
+    const necroClass = document.querySelectorAll('.categorie');
 
-    // si layer + element :
-    const isShowingDeces = map.getLayoutProperty(decesLayers[0], 'visibility') !== 'none';
-    
-    if (isShowingDeces) {
-        // On cache les décès, on montre les nécropoles
-        decesLayers.forEach(id => map.setLayoutProperty(id, 'visibility', 'none'));
-        necroLayers.forEach(id => map.setLayoutProperty(id, 'visibility', 'visible'));
-        
-        //HTML : masquer le temps : 
-        elementsTemporels.forEach(el => el.style.display = 'none');
+    // Bouton d'action
+    const bouton = document.getElementById('btn-toggle-layers');
 
-        // HTML : Afficher les blocs spécifiques aux nécropoles :
-        idsElementsNecro.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = 'block';
-        });
-        if (texteComplementaire) texteComplementaire.style.display = 'block';
+    // --- 3. DÉTECTION DE L'ÉTAT ACTUEL ---
+    // On vérifie si une couche "Décès" est visible
+    const estAfficheDeces = map.getLayoutProperty(couchesDeces[0], 'visibility') !== 'none';
 
-        //interface :
-        if(btn) btn.innerText = "Afficher les décès (2GM)";
-        console.log("Carte France : Mode Nécropoles activé");
+    if (estAfficheDeces) {
+        // ============================================
+        // >>> PASSAGE EN MODE NÉCROPOLES (ON ACTIVE)
+        // ============================================
+
+        // 1. Carte : Masquer Décès / Afficher Nécropoles
+        couchesDeces.forEach(id => map.setLayoutProperty(id, 'visibility', 'none'));
+        couchesNecro.forEach(id => map.setLayoutProperty(id, 'visibility', 'visible'));
+
+        // 2. HTML : Masquer le groupe TEMPOREL
+        if (temporelId) temporelId.style.display = 'none';
+        temporelClass.forEach(el => el.style.display = 'none');
+
+        // 3. HTML : Afficher le groupe NÉCROPOLES
+        if (necroId) necroId.style.display = 'block'; // ou 'flex' selon ton CSS
+        necroClass.forEach(el => el.style.display = 'block'); // ou 'flex'
+
+        // 4. Mettre à jour le texte du bouton
+        if (bouton) bouton.innerText = "Afficher les décès (2GM)";
 
     } else {
-        // On cache les nécropoles, on montre les décès
-        necroLayers.forEach(id => map.setLayoutProperty(id, 'visibility', 'none'));
-        decesLayers.forEach(id => map.setLayoutProperty(id, 'visibility', 'visible'));
-        
-        // HTML : Réafficher le temporel
-        elementsTemporels.forEach(el => el.style.display = 'flex');
+        // ============================================
+        // >>> PASSAGE EN MODE DÉCÈS (RETOUR DÉFAUT)
+        // ============================================
 
-        // HTML : Masquer les blocs nécropoles
-        idsElementsNecro.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.style.display = 'none';
-        });
-        if (texteComplementaire) texteComplementaire.style.display = 'none';
+        // 1. Carte : Afficher Décès / Masquer Nécropoles
+        couchesNecro.forEach(id => map.setLayoutProperty(id, 'visibility', 'none'));
+        couchesDeces.forEach(id => map.setLayoutProperty(id, 'visibility', 'visible'));
 
-        //interface :
-        if(btn) btn.innerText = "Afficher les Nécropoles";
-        console.log("Carte France : Mode Décès 2GM activé");
+        // 2. HTML : Afficher le groupe TEMPOREL
+        // Note: Si tes éléments .echelle étaient en flex, mets 'flex' ici
+        if (temporelId) temporelId.style.display = 'block'; 
+        temporelClass.forEach(el => el.style.display = 'flex'); 
+
+        // 3. HTML : Masquer le groupe NÉCROPOLES
+        if (necroId) necroId.style.display = 'none';
+        necroClass.forEach(el => el.style.display = 'none');
+
+        // 4. Mettre à jour le texte du bouton
+        if (bouton) bouton.innerText = "Afficher les Nécropoles";
     }
 }
+
 ////// FONCTION POUR CARTE MISAKI-ANGE//////
 
 // Mise à jour de la Sidebar B avec les statistiques de la commune cliquée 
@@ -764,6 +779,10 @@ function toggleSidebar(id, forceOpen = false) {
         // Ajoute la classe pour cacher la sidebar : elle se ferme
         classes.push('collapsed');
         padding[id] = 0;
+        
+        // --- AJOUTE JUSTE CETTE LIGNE ICI ---
+        // Cela force la sidebar à redevenir normale (600px) dès qu'on la ferme
+        elem.style.width = "600px"; 
     }
 
     elem.className = classes.join(' ');
@@ -1069,7 +1088,14 @@ function goToSection(index) {
 }
 
 function closeInfoPopup() {
-    document.getElementById('popupOverlay').classList.add('hidden');
+    // On cherche l'overlay par son ID (vérifie si c'est bien popupOverlay dans ton HTML)
+    const overlay = document.getElementById('popupOverlay');
+    if (overlay) {
+        overlay.style.display = 'none';
+        console.log("Popup fermée");
+    } else {
+        console.error("Impossible de trouver l'élément avec l'ID popupOverlay");
+    }
 }
 
 // Fermer avec la touche Échap
@@ -1168,33 +1194,30 @@ function createOrUpdateChart(properties, name) {
 //////// CREATE CHART MORGANE //////
 
 ///////MISAKI ////////////
-function populateFilters() {
-    const deptSelect = document.getElementById('filter-dept');
-    const communeSelect = document.getElementById('filter-commune');
+///////MISAKI ////////////
+const categories = ['Hauts-de-France','Marne','Meuse','Autres Grand Est','Autres'];
+const featuresByCat = new Map(categories.map(c=>[c,[]]));
+const tokensByCat = new Map(categories.map(c=>[c,[]]));
 
-    // Récupérer les départements uniques
-    const depts = [...new Set(cemeteries.features.map(f => f.properties.Departement))].sort();
-    depts.forEach(d => {
-        const o = document.createElement('option');
-        o.value = d; o.text = d;
-        deptSelect.appendChild(o);
-    });
+// Constantes des pictogrammes
+const PERSON_R = 3, RECT_W=2, RECT_H=3;
+const spacingX=12, spacingY=12, paddingX=3, paddingY=5;
 
-    // Récupérer les communes uniques
-    const communes = [...new Set(cemeteries.features.map(f => f.properties.Commune))].sort();
-    communes.forEach(c => {
-        const o = document.createElement('option');
-        o.value = c; o.text = c;
-        communeSelect.appendChild(o);
-    });
-}
+// Popup
+const mapPopup = new maplibregl.Popup({closeButton:true,closeOnClick:true});
+
+// Tooltip
+const tooltipDiv = d3.select('body').append('div')
+  .style('position','absolute').style('background','#fff').style('padding','4px 8px')
+  .style('border','1px solid #666').style('border-radius','4px').style('pointer-events','none')
+  .style('opacity',0);
+d3.select('body').on('mousemove', (event)=>{tooltipDiv.style('left',(event.pageX+12)+'px').style('top',(event.pageY+12)+'px');});
 
 async function loadCemeteries() {
     try {
         const response = await fetch('assets/necropole_new.geojson');
         cemeteries = await response.json(); // On remplit la variable globale
 
-        // --- TOUT CE QUI SUIT DÉPEND DE "cemeteries" ---
         
         // 1. Initialiser les catégories (votre boucle forEach)
         cemeteries.features.forEach(f => {
@@ -1230,9 +1253,26 @@ async function loadCemeteries() {
 loadCemeteries();
 console.log(cemeteries);
 
-// Constantes des pictogrammes
-const PERSON_R = 2, RECT_W=3.5, RECT_H=4.5;
-const spacingX=12, spacingY=12, paddingX=3, paddingY=5;
+function populateFilters() {
+    const deptSelect = document.getElementById('filter-dept');
+    const communeSelect = document.getElementById('filter-commune');
+
+    // Récupérer les départements uniques
+    const depts = [...new Set(cemeteries.features.map(f => f.properties.Departement))].sort();
+    depts.forEach(d => {
+        const o = document.createElement('option');
+        o.value = d; o.text = d;
+        deptSelect.appendChild(o);
+    });
+
+    // Récupérer les communes uniques
+    const communes = [...new Set(cemeteries.features.map(f => f.properties.Commune))].sort();
+    communes.forEach(c => {
+        const o = document.createElement('option');
+        o.value = c; o.text = c;
+        communeSelect.appendChild(o);
+    });
+}
 
 // Catégorisation
 function classifier(props){
@@ -1245,9 +1285,6 @@ function classifier(props){
   return 'Autres';
 }
 
-const categories = ['Hauts-de-France','Marne','Meuse','Autres Grand Est','Autres'];
-const featuresByCat = new Map(categories.map(c=>[c,[]]));
-const tokensByCat = new Map(categories.map(c=>[c,[]]));
 
 // =======================
 
@@ -1258,16 +1295,6 @@ class ResetViewControl {
   onRemove(){this._container.remove();}
 }
 map.addControl(new ResetViewControl(),"top-right");
-
-// Popup
-const mapPopup = new maplibregl.Popup({closeButton:true,closeOnClick:true});
-
-// Tooltip
-const tooltipDiv = d3.select('body').append('div')
-  .style('position','absolute').style('background','#fff').style('padding','4px 8px')
-  .style('border','1px solid #666').style('border-radius','4px').style('pointer-events','none')
-  .style('opacity',0);
-d3.select('body').on('mousemove', (event)=>{tooltipDiv.style('left',(event.pageX+12)+'px').style('top',(event.pageY+12)+'px');});
 
 // =======================
 // Fonctions de dessin des catégories
@@ -1310,9 +1337,9 @@ function renderCategories(){
         event.stopPropagation();
       });
       graveGroup.on('mouseenter', ()=>{graveGroup.selectAll('circle,rect').attr('stroke','#000').attr('stroke-width',1.2);
-        const props=tg.feature.properties; tooltipDiv.style('opacity',1).html(`<strong>${props.Nom||'—'}</strong><br/>Commune: ${props.Commune||'—'}<br/>Nombre: ${props.Nb_personnes||'0'}`);
+        const props=tg.feature.properties; tooltipDiv.style('z-index',500).style('opacity',1).html(`<strong>${props.Nom||'—'}</strong><br/>Commune: ${props.Commune||'—'}<br/>Nombre: ${props.Nb_personnes||'0'}`);
       });
-      graveGroup.on('mouseleave', ()=>{graveGroup.selectAll('circle,rect').attr('stroke','#333').attr('stroke-width',0.2);tooltipDiv.style('opacity',0);});
+      graveGroup.on('mouseleave', ()=>{graveGroup.selectAll('circle,rect').attr('stroke','#333').attr('stroke-width',0.2);tooltipDiv.style('z-index',500).style('opacity',0);});
     });
 
     card.append('div').attr('class','label-cat').style('display','none');
