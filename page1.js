@@ -1046,7 +1046,7 @@ function togglePopup() {
 
 // Popup informatif à l'ouverture de la visualisation ===
 let currentSection = 0;
-const totalSections = 2;
+const totalSections = 4;
 
 function updateSection(index) {
     // Cacher toutes les sections
@@ -1406,3 +1406,4 @@ function applyFilters(){
 document.getElementById('filter-go').addEventListener('click',applyFilters);
 
 //////////MISAKI////////
+
