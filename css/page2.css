@@ -5,12 +5,26 @@
 
 #controls {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 20px;
     z-index: 1;
     background: white;
     padding: 8px;
     border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    text-align: center;
+    width : 500px;
+}
+
+#current-image {
+    max-width: 500px;
+    width: 100%;
+    max-height: 600px;
+    height: auto; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 10px auto;
+    display: block;
 }
 
 #controls button {
@@ -46,7 +60,12 @@
 }
 
 
-
+.timeline2 ul li.in-view div {
+    transform: none;
+    -webkit-transform: none;
+    visibility: visible;
+    opacity: 1;
+}
 /* Le conteneur principal de la bulle */
 .maplibregl-popup-content {
     background: #fcf5ed !important; 
@@ -61,7 +80,7 @@
 
 .maplibregl-popup-content strong {
     display: block;
-    color: #1B3252; /* Ton bleu */
+    color: #1B3252;
     font-size: 20px;
     margin-bottom: 8px;
     border-bottom: 1px solid #456990;
