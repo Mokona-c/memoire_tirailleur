@@ -119,8 +119,8 @@
     position: absolute;
     bottom: 10px;
     left: 10px;
-    width: 60%;
-    height: 15%;
+    width: 70%;
+    height: 25%;
     background-color: #334e68;
     border-radius: 10px;
     z-index: 5;
@@ -134,7 +134,7 @@
 .echelle-container {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 10px;
     font-size: 20px;
 }
 
@@ -584,7 +584,7 @@
 }
 
 #features {
-    top: 25%;
+    top: 20%;
     left: 1%;
     width: 250px;
     height: 50%;
@@ -703,7 +703,9 @@
   padding:4px;
   margin-bottom:8px;
   background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.06);
-  position:relative}
+  position:relative  ;
+  max-width: 90%;
+}
 
 .entete-cat{
   display:flex;
@@ -723,7 +725,8 @@
   font-size:12px;color:#666
 }
 .grid-svg{width:100%;
-  height:auto;display:block;}
+  height:5px;
+  display:block;}
   
 .label-cat{display:none;} /* Masqué */
 .personne{cursor:pointer}
@@ -756,5 +759,15 @@
   border-radius:6px;
 }
 
-
+#graph_perso{
+    right: 0;
+    font-size: 15px !important;
+}
 /* FIN CARTE MISAKI*/
+
+#cats{
+    display:flex;
+    width: 100%; 
+    gap: 10px;
+    height: 95%;
+}
