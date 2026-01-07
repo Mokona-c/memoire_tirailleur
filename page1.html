@@ -104,12 +104,12 @@
 
     <nav class="nav-extended">
         <div class="nav-wrapper">
-            <a href="index.html" class="brand-logo">LOGO</a>
+            <a href="index.html" class="brand-logo">Lieux de receuillement</a>
         </div>
         <div class="nav-content">
             <ul class="tabs tabs-transparent scrollable">
-                <li class="tab"><a class="active" href="index.html">Page d'acceuil</a></li>
-                <li class="tab"><a href="page1.html">Les 2 guerres</a></li>
+                <li class="tab"><a href="index.html">Page d'acceuil</a></li>
+                <li class="tab"><a class="active" href="page1.html">Les 2 guerres</a></li>
                 <li class="tab"><a href="page2.html">La vie des soldats</a></li>
             </ul>
         </div>
@@ -135,9 +135,9 @@
         </div>
 
         <div class="map-overlay" id="graph_perso" style="display: none !important ;">
-            <p id='texte-necropoles'>
+            <p style = 'font-size: 15px;'>
                 Interactions :<br>
-                • Cliquez un icône : zoom sur le nécropole<br>
+                • Cliquez un icône : zoom sur la nécropole<br>
                 • Cliquez un point : explication du site<br>
                 • Clic droit + Molette → vue 3D
             </p>
@@ -273,7 +273,7 @@
             </div>
         </div>
 
-        <div id="controle_temporel">
+        <div id="controle_temporel" class="echelle">
             <div class="echelle-barre">
                 <span class="echelle-title">Filtrer selon l'année le nombre de soldats décédés pendant et après la
                     guerre
@@ -284,17 +284,17 @@
                 <div id="timeline-annee" class="timeline"> </div>
                 <button id="next-annee" class="bouton-defilement" onclick="defilerTemps('annee', 1)">Next</button>
             </div>
+        </div>
 
-            <!-- GRAPH MISAKI-->
-
-            <div id="cats" style="display: none !important ;"></div>
-            <div id="sources" style="display: none !important ;">
+        <div id="controle_temporel" class="categorie" style="display: none !important ;" >
+        <!-- GRAPH MISAKI-->
+            
+            <div id="cats"></div>
+            <div id="sources" >
                 <strong>Sources (Consultées en décembre 2025) : </strong><br>
                 Wikipédia : https://fr.wikipedia.org/wiki/Liste_de_nécropoles_nationales_en_France<br>
                 Ministère des armées : https://www.cheminsdememoire.gouv.fr/fr
             </div>
         </div>
     </div>
-
 </body>
-
