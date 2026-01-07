@@ -66,7 +66,7 @@ const points = [
     imgUrl: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Commandeur_de_l%27Ordre_de_la_L%C3%A9gion_d%27Honneur_avers.jpg"
   }
 ];
-
+///
 const map = new maplibregl.Map({
   container: "map",
   style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
