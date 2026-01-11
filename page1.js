@@ -323,7 +323,7 @@ map.on('load', async () => {
         // Affichage du Popup
         const popupHTML = `
                             <div class="popup-header">
-                                <h2 class="popup-commune"> Commune : ${communeClickee}</h2>
+                                <h2 class="popup-commune" style="color:white;"> Commune : ${communeClickee}</h2>
                             </div>
                             <div class="popup-body">
                                 <div class="popup-stat">
@@ -1406,4 +1406,5 @@ function applyFilters(){
 document.getElementById('filter-go').addEventListener('click',applyFilters);
 
 //////////MISAKI////////
+
 
